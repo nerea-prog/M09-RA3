@@ -11,7 +11,6 @@ public class Servidor {
     static final String HOST = "localhost";
     ServerSocket serverSocket=null;
     Socket clientSocket = null;
-    private boolean end = false;
     
     public void connecta(){
         try{
@@ -19,10 +18,7 @@ public class Servidor {
             clientSocket = serverSocket.accept();
             System.out.println("Servidor en marxa a " + HOST + ":" + PORT);
             System.out.println("Esperant connexions a "  + HOST + ":" + PORT);
-            System.out.println("Client connectat: /" + HOST);
-            while (!end) {
-                clientSocket = serverSocket.accept();
-            }   
+            System.out.println("Client connectat: " + clientSocket.getInetAddress());
         } catch(IOException e){
             Logger.getLogger(Servidor.class.getName())
             .log(Level.SEVERE, null, e);;

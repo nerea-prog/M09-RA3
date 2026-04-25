@@ -40,10 +40,11 @@ public class Client {
         client.connecta();
         client.envia("Prova d'enviament 1");
         client.envia("Prova d'enviament 2");
-        client.envia("Adeu!");
+        client.envia("Adéu!");
         Scanner sc = new Scanner(System.in);
         System.out.println("Prem Enter per tancar el client...");
         sc.nextLine();
         client.tanca();
+        System.out.println("Client tancat");
     }
 }
