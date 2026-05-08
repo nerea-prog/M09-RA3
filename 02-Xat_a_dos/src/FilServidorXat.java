@@ -3,21 +3,23 @@ import java.net.Socket;
 
 public class FilServidorXat extends Thread {
     Socket socket = null;
-    public FilServidorXat(Socket socket){
+    ObjectInputStream in = null;
+    public FilServidorXat(Socket socket, ObjectInputStream in){
         this.socket = socket;
+        this.in = in;
     }
 
     public void run(){
         try{
-            ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
             String msg;
             while (true) {
-                msg = (String) in.readObject();
-                
+                // Lectura continua de missatges
+                msg = (String) in.readObject(); // Serveix per rebre dades del client
+                System.out.print("Missatge ('sortir' per tancar): Rebut: " + msg + "\n");
                 if (msg.equals(ServidorXat.MSG_SORTIR)) {
+                    System.out.println("Fil de xat finalitzat.");
                     break;
                 }
-                System.out.println(msg);
             }
         } catch (Exception e){
             e.printStackTrace();
